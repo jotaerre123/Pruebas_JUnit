@@ -42,7 +42,7 @@ public class MockitoTest {
         Producto p = Producto.builder()
                 .codigoProducto("1")
                 .nombre("AAAA")
-                .precio(17.59)
+                .precio(12.34)
                 .build();
         Cliente c = Cliente.builder()
                 .nombre("pepe")
@@ -61,6 +61,7 @@ public class MockitoTest {
         venta.setLineasDeVenta(List.of(new LineaDeVenta(p, 2, 12.34)));
 
         lenient().when(ventaRepositorio.save(venta)).thenReturn(venta);
+        assertEquals(venta, ventaServicio.nuevaVenta(carrito, c));
 
     }
 
